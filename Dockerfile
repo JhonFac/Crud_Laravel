@@ -19,6 +19,7 @@ WORKDIR /app
 COPY . .
 
 RUN composer install
+RUN composer require darkaonline/l5-swagger
 
 COPY ./scripts/entrypoint.sh /scripts/
 
