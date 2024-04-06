@@ -20,6 +20,9 @@ COPY . .
 
 RUN composer install
 RUN composer require darkaonline/l5-swagger
+RUN php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+RUN php artisan l5-swagger:generate
+
 
 COPY ./scripts/entrypoint.sh /scripts/
 
