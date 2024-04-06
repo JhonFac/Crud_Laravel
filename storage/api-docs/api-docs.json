@@ -13,8 +13,357 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/challenges/page/{id}": {
+            "get": {
+                "tags": [
+                    "Challenges"
+                ],
+                "summary": "Obtiene todos los challenges",
+                "description": "Display a listing of the resource.",
+                "operationId": "5380f426a793cb14275f7a9df7c4ed6e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de challenges"
+                    }
+                }
+            }
+        },
+        "/api/challenges": {
+            "post": {
+                "tags": [
+                    "Challenges"
+                ],
+                "summary": "Crea un nuevo challenge",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "63ffd18fb5f5371ec322250145cbb046",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "difficulty": {
+                                        "type": "integer"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "challenge creado exitosamente"
+                    }
+                }
+            }
+        },
+        "/api/challenges/{id}": {
+            "get": {
+                "tags": [
+                    "Challenges"
+                ],
+                "summary": "Obtiene el challenge por ID",
+                "description": "Display the specified resource.",
+                "operationId": "ed8928d8cd2720e0dcce6cd0e29767f1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de challenges"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Challenges"
+                ],
+                "summary": "Actualiza un challenge existente",
+                "description": "Update the specified resource in storage.",
+                "operationId": "8f55380ce146081226d3559b05c43570",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del challenge a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "difficulty": {
+                                        "type": "integer"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "challenge actualizado exitosamente"
+                    },
+                    "404": {
+                        "description": "challenge no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Challenges"
+                ],
+                "summary": "Elimina un challenge existente",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "8621e1614a29d01b58dd2c4384d0afba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del challenge a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "challenge eliminado exitosamente"
+                    },
+                    "404": {
+                        "description": "challenge no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/company/page/{id}": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Obtiene todos los companies",
+                "description": "Display a listing of the resource.",
+                "operationId": "d34aadbac2cb8d15f0f5cc9dfa15f95d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de companies"
+                    }
+                }
+            }
+        },
+        "/api/company": {
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Crea un nuevo company",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "faf1545d2af89079ca55c4f9ed6ea302",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "image_path": {
+                                        "type": "string"
+                                    },
+                                    "industry": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "company creado exitosamente"
+                    }
+                }
+            }
+        },
+        "/api/company/{id}": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Obtiene el company por ID",
+                "description": "Display the specified resource.",
+                "operationId": "29b0f8f11c5e74b0c7a9f94f223c0abc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de companies"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Actualiza un company existente",
+                "description": "Update the specified resource in storage.",
+                "operationId": "dba5691bd7818c368accfd785048ea90",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del company a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "image_path": {
+                                        "type": "string"
+                                    },
+                                    "industry": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "company actualizado exitosamente"
+                    },
+                    "404": {
+                        "description": "company no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Elimina un company existente",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "a073402836212623826fbe1e5a591454",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del company a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "company eliminado exitosamente"
+                    },
+                    "404": {
+                        "description": "company no encontrado"
+                    }
+                }
+            }
+        },
         "/api/users/page/{id}": {
             "get": {
+                "tags": [
+                    "Usuarios"
+                ],
                 "summary": "Obtiene todos los usuarios",
                 "description": "Display a listing of the resource.",
                 "operationId": "6245d067fd87883931cf376056b10006",
@@ -38,6 +387,9 @@
         },
         "/api/users": {
             "post": {
+                "tags": [
+                    "Usuarios"
+                ],
                 "summary": "Crea un nuevo usuario",
                 "description": "Store a newly created resource in storage.",
                 "operationId": "592819a0265360b2014512d6dbfaf0e7",
@@ -69,7 +421,34 @@
             }
         },
         "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtiene el usuario por ID",
+                "description": "Display the specified resource.",
+                "operationId": "36a33ff774d5cba33c039dec2c3e0287",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de usuarios"
+                    }
+                }
+            },
             "put": {
+                "tags": [
+                    "Usuarios"
+                ],
                 "summary": "Actualiza un usuario existente",
                 "description": "Update the specified resource in storage.",
                 "operationId": "b9091397c8b25f12c6adb74be6ce3a5a",
@@ -117,6 +496,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
                 "summary": "Elimina un usuario existente",
                 "description": "Remove the specified resource from storage.",
                 "operationId": "fa56cffde745d3f152f95cbacd936c0b",
@@ -143,6 +525,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Challenges",
+            "description": "Endpoints para manejar Challenges"
+        },
+        {
+            "name": "Company",
+            "description": "Operaciones relacionadas con Company"
+        },
         {
             "name": "Usuarios",
             "description": "Operaciones relacionadas con usuarios"

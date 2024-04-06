@@ -23,6 +23,7 @@ class UserController extends Controller
      * @OA\Get(
      *     path="/api/users/page/{id}",
      *     summary="Obtiene todos los usuarios",
+     *     tags={"Usuarios"}, 
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -33,14 +34,19 @@ class UserController extends Controller
      *     @OA\Response(response="200", description="Listado de usuarios")
      * )
      */
-    public function index($id)
+    public function index($page)
     {
-        $perPage = 10;
-        $offset = ($id - 1) * $perPage;
-        $users = Users::offset($offset)
-            ->limit($perPage)
-            ->get();
-        return $users;
+
+        try {
+            $perPage = 10;
+            $offset = ($page - 1) * $perPage;
+            $users = Users::offset($offset)
+                ->limit($perPage)
+                ->get();
+            return response()->json($users, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener los desafíos: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -62,6 +68,7 @@ class UserController extends Controller
      * @OA\Post(
      *     path="/api/users",
      *     summary="Crea un nuevo usuario",
+     *     tags={"Usuarios"}, 
      *     @OA\Schema(type="integer"),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
@@ -96,10 +103,25 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *    
+     * @OA\Get(
+     *     path="/api/users/{id}",
+     *     summary="Obtiene el usuario por ID",
+     *     tags={"Usuarios"}, 
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Numero de la pagina",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="Listado de usuarios")
+     * )      
+     * 
      */
     public function show($id)
     {
-        //
+        return Users::findOrFail($id);
     }
 
     /**
@@ -124,6 +146,7 @@ class UserController extends Controller
      * @OA\Put(
      *     path="/api/users/{id}",
      *     summary="Actualiza un usuario existente",
+     *     tags={"Usuarios"}, 
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -147,19 +170,18 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $user = User::findOrFail($id);
-
+            $user = Users::findOrFail($id);
             // Verificar si el correo electrónico está siendo modificado y si el nuevo correo existe
-            if ($request->has('email') && $request->email !== $user->email && User::where('email', $request->email)->exists()) {
+            if ($request->has('email') && $request->email !== $user->email && Users::where('email', $request->email)->exists()) {
                 return response()->json(['error' => 'El correo electrónico ya está en uso por otro usuario'], 422);
             }
+
             if ($request->has('name')) {
                 $user->name = $request->name;
             }
             if ($request->has('image_path')) {
                 $user->image_path = $request->image_path;
             }
-
             $user->save();
             return response()->json($user, 200);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -179,6 +201,7 @@ class UserController extends Controller
      * @OA\Delete(
      *     path="/api/users/{id}",
      *     summary="Elimina un usuario existente",
+     *     tags={"Usuarios"}, 
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

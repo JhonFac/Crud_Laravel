@@ -26,6 +26,4 @@ RUN chmod +x /scripts/entrypoint.sh
 RUN apt-get install -y dos2unix
 RUN dos2unix /scripts/entrypoint.sh
 
-EXPOSE 8000
-
 CMD ["sh", "/scripts/entrypoint.sh"]
