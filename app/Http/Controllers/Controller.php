@@ -9,15 +9,15 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *     title="API de Usuarios",
+ *     title="CRUD Laravel ",
  *     version="1.0.0",
- *     description="API para administrar usuarios",
+ *     description="API para administrar multimples servicios y relaciones entre tablas",
  *     @OA\Contact(
  *         email="jhonfredyaya04@gmail.com"
  *     ),
  *     @OA\License(
- *         name="MIT",
- *         url="https://opensource.org/licenses/MIT"
+ *         name="Repocitorio",
+ *         url="https://github.com/JhonFac/Crud_Laravel.git"
  *     )
  * )
  */

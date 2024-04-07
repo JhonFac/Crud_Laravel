@@ -1,14 +1,14 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API de Usuarios",
-        "description": "API para administrar usuarios",
+        "title": "CRUD Laravel ",
+        "description": "API para administrar multimples servicios y relaciones entre tablas",
         "contact": {
             "email": "jhonfredyaya04@gmail.com"
         },
         "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
+            "name": "Repocitorio",
+            "url": "https://github.com/JhonFac/Crud_Laravel.git"
         },
         "version": "1.0.0"
     },
@@ -359,10 +359,354 @@
                 }
             }
         },
+        "/api/program_participants/page/{id}": {
+            "get": {
+                "tags": [
+                    "ProgramParticipants"
+                ],
+                "summary": "Obtiene todos los usuarios",
+                "description": "Display a listing of the resource.",
+                "operationId": "6bfec62f2526468aa151c225dc2f2c98",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de usuarios"
+                    }
+                }
+            }
+        },
+        "/api/program_participants": {
+            "post": {
+                "tags": [
+                    "ProgramParticipants"
+                ],
+                "summary": "Crea un nuevo usuario",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "237718725e5190499fe6892acc15dd71",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "program_id": {
+                                        "type": "iknt"
+                                    },
+                                    "entity_type": {
+                                        "type": "string"
+                                    },
+                                    "entity_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado exitosamente"
+                    }
+                }
+            }
+        },
+        "/api/program_participants/{id}": {
+            "get": {
+                "tags": [
+                    "ProgramParticipants"
+                ],
+                "summary": "Obtiene el usuario por ID",
+                "description": "Display the specified resource.",
+                "operationId": "e78b3ba977a821f3cd38307b6363c42f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de usuarios"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProgramParticipants"
+                ],
+                "summary": "Actualiza un usuario existente",
+                "description": "Update the specified resource in storage.",
+                "operationId": "3e3b26f2eb3c700775989fa6da752132",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "program_id": {
+                                        "type": "iknt"
+                                    },
+                                    "entity_type": {
+                                        "type": "string"
+                                    },
+                                    "entity_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado exitosamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ProgramParticipants"
+                ],
+                "summary": "Elimina un usuario existente",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "5a6a3993a6fde23e7e75e6a9662d992a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Usuario eliminado exitosamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/programs/page/{id}": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "summary": "Obtiene todos los usuarios",
+                "description": "Display a listing of the resource.",
+                "operationId": "e21ebc41bed62fb6682cd3ef94378d0d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de programs"
+                    }
+                }
+            }
+        },
+        "/api/programs": {
+            "post": {
+                "tags": [
+                    "Programs"
+                ],
+                "summary": "Crea un nuevo usuario",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "8d0c35c3c3311c4c49d8d937c9cc1c42",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "start_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado exitosamente"
+                    }
+                }
+            }
+        },
+        "/api/programs/{id}": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "summary": "Obtiene el usuario por ID",
+                "description": "Display the specified resource.",
+                "operationId": "e8941a6be874de950a9f6b4a344c36cd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Numero de la pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de usuarios"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Programs"
+                ],
+                "summary": "Actualiza un program existente",
+                "description": "Update the specified resource in storage.",
+                "operationId": "2dd064f5d7487723ee033289155ba71b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del program a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "start_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado exitosamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Programs"
+                ],
+                "summary": "Elimina un usuario existente",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "fb27e0b0e540d33d30ae4b7986be6586",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Usuario eliminado exitosamente"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
         "/api/users/page/{id}": {
             "get": {
                 "tags": [
-                    "Usuarios"
+                    "Users"
                 ],
                 "summary": "Obtiene todos los usuarios",
                 "description": "Display a listing of the resource.",
@@ -388,7 +732,7 @@
         "/api/users": {
             "post": {
                 "tags": [
-                    "Usuarios"
+                    "Users"
                 ],
                 "summary": "Crea un nuevo usuario",
                 "description": "Store a newly created resource in storage.",
@@ -423,7 +767,7 @@
         "/api/users/{id}": {
             "get": {
                 "tags": [
-                    "Usuarios"
+                    "Users"
                 ],
                 "summary": "Obtiene el usuario por ID",
                 "description": "Display the specified resource.",
@@ -447,7 +791,7 @@
             },
             "put": {
                 "tags": [
-                    "Usuarios"
+                    "Users"
                 ],
                 "summary": "Actualiza un usuario existente",
                 "description": "Update the specified resource in storage.",
@@ -497,7 +841,7 @@
             },
             "delete": {
                 "tags": [
-                    "Usuarios"
+                    "Users"
                 ],
                 "summary": "Elimina un usuario existente",
                 "description": "Remove the specified resource from storage.",
@@ -534,7 +878,15 @@
             "description": "Operaciones relacionadas con Company"
         },
         {
-            "name": "Usuarios",
+            "name": "ProgramParticipants",
+            "description": "Operaciones relacionadas con la relacion de programas y participantes"
+        },
+        {
+            "name": "Programs",
+            "description": "Operaciones relacionadas con Programs"
+        },
+        {
+            "name": "Users",
             "description": "Operaciones relacionadas con usuarios"
         }
     ]

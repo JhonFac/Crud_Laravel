@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Challenge;
 use App\Models\Users;
 
+const RESPONSE_404 = 'challenge no encontrado';
+
 /**
  * @OA\Tag(
  *     name="Challenges",
@@ -18,11 +20,10 @@ class ChallengeController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Get(
      *     path="/api/challenges/page/{id}",
      *     summary="Obtiene todos los challenges",
-     *     tags={"Challenges"}, 
+     *     tags={"Challenges"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -64,12 +65,11 @@ class ChallengeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * 
-     * 
+
      * @OA\Post(
      *     path="/api/challenges",
      *     summary="Crea un nuevo challenge",
-     *     tags={"Challenges"}, 
+     *     tags={"Challenges"},
      *     @OA\Schema(type="integer"),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
@@ -86,10 +86,10 @@ class ChallengeController extends Controller
     public function store(Request $request)
     {
         try {
-            $userId = $request->user_id; 
+            $userId = $request->user_id;
             $existingUser = Users::find($userId);
             if (!$existingUser) {
-                return response()->json(['error' => 'challenge no encontrado'], 404);
+                return response()->json(['error' => RESPONSE_404], 404);
             }
 
             $challenge = new Challenge();
@@ -110,11 +110,10 @@ class ChallengeController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Get(
      *     path="/api/challenges/{id}",
      *     summary="Obtiene el challenge por ID",
-     *     tags={"Challenges"}, 
+     *     tags={"Challenges"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -123,7 +122,7 @@ class ChallengeController extends Controller
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response="200", description="Listado de challenges")
-     * )  
+     * )
      */
     public function show($id)
     {
@@ -147,11 +146,10 @@ class ChallengeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Put(
      *     path="/api/challenges/{id}",
      *     summary="Actualiza un challenge existente",
-     *     tags={"Challenges"}, 
+     *     tags={"Challenges"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -179,10 +177,10 @@ class ChallengeController extends Controller
             $challenge = Challenge::findOrFail($id);
 
             if ($request->has('user_id')) {
-                $userId = $request->user_id; 
+                $userId = $request->user_id;
                 $existingUser = Users::find($userId);
                 if (!$existingUser) {
-                    return response()->json(['error' => 'challenge no encontrado'], 404);
+                    return response()->json(['error' => RESPONSE_404], 404);
                 }
                 $challenge->user_id = $userId;
             }
@@ -200,22 +198,22 @@ class ChallengeController extends Controller
             $challenge->save();
             return response()->json($challenge, 200);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json(['error' => 'challenge no encontrado'], 404);
+            return response()->json(['error' => RESPONSE_404], 404);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar el challenge'], 500);
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Delete(
      *     path="/api/challenges/{id}",
      *     summary="Elimina un challenge existente",
-     *     tags={"Challenges"}, 
+     *     tags={"Challenges"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -230,9 +228,6 @@ class ChallengeController extends Controller
 
     public function destroy($id)
     {
-        {
-            $challenge = Challenge::destroy($id);
-            return $challenge;
-        }
+        return Challenge::destroy($id);
     }
 }

@@ -60,8 +60,23 @@ Route::delete('/programs/{id}', 'App\Http\Controllers\ProgramsController@destroy
 /* These lines of code are defining routes for a RESTful API related to a resource called
 "program_participants". Each route corresponds to a specific HTTP method and action to be performed
 on the program_participants resource. Here's a breakdown of each route: */
-Route::get('/program_participants/page/{page}', 'App\Http\Controllers\ProgramParticipantsController@index'); //mostrar todos los registros
-Route::get('/program_participants/{id}', 'App\Http\Controllers\ProgramParticipantsController@show'); //mostrar registro por id
-Route::post('/program_participants', 'App\Http\Controllers\ProgramParticipantsController@store'); //crear un registro
-Route::put('/program_participants/{id}', 'App\Http\Controllers\ProgramParticipantsController@update'); //actualizar un registro
-Route::delete('/program_participants/{id}', 'App\Http\Controllers\ProgramParticipantsController@destroy'); //actualizar un registro
+Route::get(
+    '/program_participants/page/{page}',
+    'App\Http\Controllers\ProgramParticipantsController@index'
+); //mostrar todos los registros
+Route::get(
+    '/program_participants/{id}',
+    'App\Http\Controllers\ProgramParticipantsController@show'
+); //mostrar registro por id
+Route::post(
+    '/program_participants',
+    'App\Http\Controllers\ProgramParticipantsController@store'
+); //crear un registro
+Route::put(
+    '/program_participants/{id}',
+    'App\Http\Controllers\ProgramParticipantsController@update'
+); //actualizar un registro
+Route::delete(
+    '/program_participants/{id}',
+    'App\Http\Controllers\ProgramParticipantsController@destroy'
+); //actualizar un registro

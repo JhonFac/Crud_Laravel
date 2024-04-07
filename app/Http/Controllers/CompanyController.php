@@ -167,7 +167,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = $request->user_id; 
+        $userId = $request->user_id;
         $existingUser = Users::find($userId);
         if (!$existingUser) {
             return response()->json(['error' => 'Usuario no encontrado'], 404);
@@ -262,7 +262,7 @@ class CompanyController extends Controller
             $company = Company::findOrFail($id);
 
             if ($request->has('user_id')) {
-                $userId = $request->user_id; 
+                $userId = $request->user_id;
                 $existingUser = Users::find($userId);
                 if (!$existingUser) {
                     return response()->json(['error' => 'company no encontrado'], 404);
@@ -315,7 +315,7 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $user = Company::destroy($id);
-        return $user;
+        $company = Company::destroy($id);
+        return $company;
     }
 }

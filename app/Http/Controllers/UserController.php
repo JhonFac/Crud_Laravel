@@ -6,9 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Users;
 
+
 /**
  * @OA\Tag(
- *     name="Usuarios",
+ *     name="Users",
  *     description="Operaciones relacionadas con usuarios"
  * )
  */
@@ -18,12 +19,10 @@ class UserController extends Controller
      * Display a listing of the resource.
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
-     * 
      * @OA\Get(
      *     path="/api/users/page/{id}",
      *     summary="Obtiene todos los usuarios",
-     *     tags={"Usuarios"}, 
+     *     tags={"Users"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -36,7 +35,6 @@ class UserController extends Controller
      */
     public function index($page)
     {
-
         try {
             $perPage = 10;
             $offset = ($page - 1) * $perPage;
@@ -64,11 +62,10 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Post(
      *     path="/api/users",
      *     summary="Crea un nuevo usuario",
-     *     tags={"Usuarios"}, 
+     *     tags={"Users"},
      *     @OA\Schema(type="integer"),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
@@ -103,11 +100,10 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     *    
      * @OA\Get(
      *     path="/api/users/{id}",
      *     summary="Obtiene el usuario por ID",
-     *     tags={"Usuarios"}, 
+     *     tags={"Users"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -116,8 +112,7 @@ class UserController extends Controller
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(response="200", description="Listado de usuarios")
-     * )      
-     * 
+     * )
      */
     public function show($id)
     {
@@ -141,12 +136,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
-     * 
      * @OA\Put(
      *     path="/api/users/{id}",
      *     summary="Actualiza un usuario existente",
-     *     tags={"Usuarios"}, 
+     *     tags={"Users"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -197,11 +190,10 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
      * @OA\Delete(
      *     path="/api/users/{id}",
      *     summary="Elimina un usuario existente",
-     *     tags={"Usuarios"}, 
+     *     tags={"Users"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -215,7 +207,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = Users::destroy($id);
-        return $user;
+        return Users::destroy($id);
     }
 }
