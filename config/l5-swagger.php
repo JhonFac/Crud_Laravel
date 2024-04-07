@@ -292,13 +292,8 @@ return [
          * Constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://my-default-host.com'),
         ],
     ],
 
-    'assets' => [
-        'path' => '/docs/asset',
-        'relative' => false,
-        'base_url' => secure_asset('/docs/asset'),
-    ],
 ];
